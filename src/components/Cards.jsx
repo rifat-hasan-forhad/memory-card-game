@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const Cards = ({ onScore, onMoves }) => {
-  const fruits = [
+const Cards = ({ onScore, onMoves, reset }) => {
+  const initialfruits = [
     "🍓",
     "🍍",
     "🥝",
@@ -19,6 +19,12 @@ const Cards = ({ onScore, onMoves }) => {
     "🌽",
     "🍌",
   ];
+
+  const [fruits, setFruits] = useState(initialfruits);
+  const shuffleCards = () => {
+    const shuffled = [...initialfruits].sort(() => Math.random() - 0.5);
+    setFruits(shuffled);
+  };
 
   const [isFlipped, setFlipped] = useState(Array(fruits.length).fill(false));
   const [matched, setMatched] = useState(Array(fruits.length).fill(false));
@@ -70,6 +76,15 @@ const Cards = ({ onScore, onMoves }) => {
     onScore(score);
     onMoves(moves);
   }, [score, moves]);
+
+  useEffect(() => {
+    shuffleCards();
+    setFlipped(Array(fruits.length).fill(false));
+    setMatched(Array(fruits.length).fill(false));
+    setSelected([]);
+    setScore(0);
+    setMoves(0);
+  }, [reset]);
 
   return (
     <div className="flex justify-center py-4 mt-8 flex-wrap">

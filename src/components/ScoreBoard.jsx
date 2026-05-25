@@ -1,8 +1,4 @@
-const ScoreBoard = ({ score, moves }) => {
-  const handleNewGame = () => {
-    alert("comming soon");
-  };
-
+const ScoreBoard = ({ score, moves, onNewGame }) => {
   return (
     <div className="bg-primary text-center p-4 mt-8 border border-gray-700 rounded-xl">
       <h1 className="bg-linear-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text text-2xl font-semibold">
@@ -23,7 +19,7 @@ const ScoreBoard = ({ score, moves }) => {
 
       <button
         className="bg-linear-to-r from-blue-400 to-purple-400 text-white font-semibold px-4 py-1.5 rounded-lg cursor-pointer "
-        onClick={handleNewGame}
+        onClick={onNewGame}
       >
         ⏱️ New Game
       </button>
